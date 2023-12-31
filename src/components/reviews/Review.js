@@ -22,7 +22,7 @@ const Review = ({ getMovieData, movie, reviews, setReviews }) => {
 
     try {
       const response = await api.post("/reviews", {
-        body: rev.value,
+        reviewBody: rev.value,
         imdbId: movieId,
       });
 
@@ -66,18 +66,18 @@ const Review = ({ getMovieData, movie, reviews, setReviews }) => {
               </Row>
             </>
           }
-          {reviews?.map((r) => {
+          {reviews?.map((r, i) => {
             return (
-              <>
+              <div key={i}>
                 <Row>
-                  <Col key={r.id}>{r.body}</Col>
+                  <Col>{r.body}</Col>
                 </Row>
                 <Row>
                   <Col>
                     <hr />
                   </Col>
                 </Row>
-              </>
+              </div>
             );
           })}
         </Col>
